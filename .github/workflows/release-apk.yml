@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PUB_CACHE: .pub-cache
-      GRADLE_USER_HOME: android/.gradle
+      GRADLE_USER_HOME: ${{ github.workspace }}/android/.gradle
     steps:
       - uses: actions/checkout@v2
       - name: Setup Java JDK
