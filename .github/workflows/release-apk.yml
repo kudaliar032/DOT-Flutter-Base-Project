@@ -32,6 +32,7 @@ jobs:
             .flutter-plugins-dependencies
             android/.gradle
             build
+          key: ${{ runner.os }}-build-caches
       - run: flutter pub get
       - run: flutter build apk
       - name: Upload release artifacts
