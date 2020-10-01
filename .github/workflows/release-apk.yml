@@ -32,8 +32,8 @@ jobs:
             android/.gradle
             build
           key: ${{ runner.os }}-build-caches
-      - run: flutter pub get
-      - run: flutter build apk
+      - run: flutter pub upgrade
+      - run: flutter build apk --verbose
       - name: Upload release artifacts
         uses: actions/upload-artifact@v2
         with:
