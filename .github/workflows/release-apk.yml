@@ -45,6 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    needs: build
     steps:
       - name: Download release artifacts
         uses: actions/download-artifact@v2
