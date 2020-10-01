@@ -1,8 +1,7 @@
 name: Release APK from Tag
 on:
   push:
-    banches: [master]
-  push:
+    branches: [master]
     tags: ['*']
 
 jobs:
