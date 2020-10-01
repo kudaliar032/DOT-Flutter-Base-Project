@@ -6,6 +6,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      GRADLE_USER_HOME: ${{ env.GITHUB_WORKSPACE }}/android/.gradle
+      GRADLE_USER_HOME: ${{ github.workspace }}/android/.gradle
     steps:
       - run: echo $GRADLE_USER_HOME
