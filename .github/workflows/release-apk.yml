@@ -1,7 +1,6 @@
 name: Release APK from Tag
 on:
   push:
-    branches: [master]
     tags: ['*']
 
 jobs:
@@ -40,3 +39,29 @@ jobs:
         with:
           name: APK
           path: build/app/outputs/apk/release
+
+  release:
+    name: Release APK
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Download release artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: APK
+          path: release_apk
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1.0.2
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release_apk/app-release.apk
+          asset_name: app-${{ github.ref }}-release.apk
